@@ -1,4 +1,4 @@
-package glue;
+package autotests;
 
 import java.util.Comparator;
 

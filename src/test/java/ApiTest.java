@@ -1,7 +1,6 @@
+import autotests.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import glue.User;
-import glue.UserComporator;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONException;

@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package plugin;
+package autotests.plugin;
 
 import cucumber.api.TestCase;
 import gherkin.ast.Feature;

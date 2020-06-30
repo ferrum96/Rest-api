@@ -1,4 +1,4 @@
-package plugin;
+package autotests.plugin;
 
 import cucumber.api.*;
 import cucumber.api.Result.Type;

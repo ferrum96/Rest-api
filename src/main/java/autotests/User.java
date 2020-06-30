@@ -1,4 +1,4 @@
-package glue;
+package autotests;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +44,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "glue.User{" +
+        return "autotests.User{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';

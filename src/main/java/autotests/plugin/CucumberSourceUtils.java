@@ -1,4 +1,4 @@
-package plugin;
+package autotests.plugin;
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)

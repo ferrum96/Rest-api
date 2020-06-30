@@ -1,21 +1,15 @@
-package glue;
+package autotests.glue;
 
 import com.google.gson.Gson;
 import cucumber.api.java.Before;
 import cucumber.api.java.ru.Когда;
-import cucumber.api.java.ru.Тогда;
 import io.restassured.response.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.assertj.core.api.Assertions;
 
-import java.io.File;
-import java.io.IOException;
-
-import static glue.User.getUsers;
-import static glue.User.users;
+import static autotests.User.getUsers;
+import static autotests.User.users;
 import static io.restassured.RestAssured.given;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class Steps {
 
@@ -24,7 +18,7 @@ public class Steps {
 
     @Before
     public void setUp() {
-            getNewTestUserTest();
+        getNewTestUser();
     }
 
     @Когда("пользователь снимает {int} рублей, лимит 400 рублей")
@@ -45,7 +39,7 @@ public class Steps {
         System.out.println(response.getBody().asString());
     }
 
-    public void getNewTestUserTest() throws JSONException {
+    public void getNewTestUser() throws JSONException {
 
         Response response = given().when()
                 .header("Content-Type", "application/json")
@@ -53,7 +47,5 @@ public class Steps {
         response.then()
                 .statusCode(200).log();
     }
-
-
 
 }
