@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue = {"autotests/glue"},
-        tags = {"@scenario1,@scenario2,@scenario3,@scenario4,@scenario5,@scenario6,@scenario7,@scenario8,@scenario9"},
+        tags = {"@scenario1,@scenario2,@scenario3,@scenario4,@scenario5,@scenario6,@scenario7,@scenario8,@scenario9,@scenario10"},
         strict = true
 )
 public class CucumberRunner {

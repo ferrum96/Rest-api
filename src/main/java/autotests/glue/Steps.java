@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import static autotests.User.getUsers;
 import static autotests.User.users;
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Steps {
 
@@ -47,6 +48,7 @@ public class Steps {
         getUsers();
         String id = users.stream().sorted(Comparator.comparing(User::getName).reversed()).collect(Collectors.toList()).get(0).getId();
         int count = 0;
+        Response postResponse = null;
 
         getUserInfo(id);
 
@@ -56,7 +58,7 @@ public class Steps {
             requestBody.put("value", 10);
             requestBody.put("resource", Resource.ACCOUNT);
 
-            Response postResponse = given().when()
+            postResponse = given().when()
                     .header("Content-Type", "application/json")
                     .body(requestBody.toString())
                     .post(basePath + "/users/" + id + "/operations");
@@ -64,7 +66,13 @@ public class Steps {
                     .statusCode(200).log();
             count++;
             System.out.println(postResponse.getBody().asString());
+            
         }
+
+        if (value <= 9)
+            assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Success\",\"message\":\"Успешная операция\"}");
+        else
+            assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Error\",\"message\":\"Операция не может быть выполнена\"}");
 
         getOperationsResponse(id);
         getRemainResponse(id);
@@ -106,7 +114,12 @@ public class Steps {
         postResponse.then()
                 .statusCode(200).log();
         System.out.println(postResponse.getBody().asString());
-        //assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Success\",\"message\":\"Успешная операция\"}");
+        if (value < 400)
+            assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Success\",\"message\":\"Успешная операция\"}");
+        if (value >= 400 && value < 500)
+            assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Warning\",\"message\":\"Необходимо дополнительнео подтверждение операции\"}");
+        if (value >= 500)
+            assertThat(postResponse.getBody().asString()).isEqualTo("{\"verdict\":\"Error\",\"message\":\"Операция не может быть выполнена\"}");
 
         if (postResponse.getBody().asString().equals("{\"verdict\":\"Warning\",\"message\":\"Необходимо дополнительнео подтверждение операции\"}")) {
 
