@@ -16,7 +16,7 @@ public class User {
     private String id;
     private String name;
     private static Gson gson = new Gson();
-    public static List<User> users = new LinkedList<>();
+    public static List<User> users = new ArrayList<>();
     private static final String basePath = "http://localhost:8888";
 
 

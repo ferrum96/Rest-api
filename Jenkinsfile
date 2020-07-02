@@ -3,6 +3,13 @@ pipeline {
 
     stages {
 
+        stage ('Run jar file stage') {
+
+            steps {
+                bat 'start.bat'
+            }
+        }
+
         stage ('Compile stage') {
 
         	steps {
@@ -14,6 +21,13 @@ pipeline {
 
         	steps {
         		bat 'mvn test'
+            }
+        }
+
+        stage ('Stop jar file stage') {
+
+            steps {
+                bat 'stop.bat'
             }
         }
 
