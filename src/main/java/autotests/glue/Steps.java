@@ -42,7 +42,7 @@ public class Steps {
     }
 
     @Когда("пользователь проводит {int} операций через аккаунт, лимит 10 операций")
-    public void moreThanCount(int value) throws IOException {
+    public void пользовательПроводитОпераций(int value) throws IOException {
 
         getUsers();
         String id = users.stream().sorted(Comparator.comparing(User::getName).reversed()).collect(Collectors.toList()).get(0).getId();
@@ -170,6 +170,7 @@ public class Steps {
         getResponse.then()
                 .statusCode(200).log();
         System.out.println(getResponse.getBody().asString());
+        System.out.println("\n");
     }
 
     private void getRemainResponse(String id) {
